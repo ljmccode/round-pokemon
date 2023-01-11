@@ -14,7 +14,14 @@ export default function Home() {
   const firstPokemon = trpc.getPokemonById.useQuery({ id: first})
   const secondPokemon = trpc.getPokemonById.useQuery({ id: second})
 
+  const voteMutation = trpc.castVote.useMutation();
+
   const voteForRoundest = (selected:number) => {
+    if (selected === first) {
+      voteMutation.mutate({votedFor: first, votedAgainst: second})
+    } else {
+      voteMutation.mutate({votedFor: second, votedAgainst: first})
+    }
     // todo: fire mutation to persist changes
     updateIds(getOptionsForVote)
   }
