@@ -1,9 +1,10 @@
 import { RouterOutput } from "@/utils/trpc";
+import Image from "next/image";
 
 const PokemonListing: React.FC<{pokemon: PokemonFromServer; vote: () => void}> = (props) => {
   return (
     <div className='flex flex-col items-center'>
-      <img src={props.pokemon.sprites.front_default ?? fallback} alt={props.pokemon.name} className='w-64 h-64'/>
+      <Image width={256} height={256} src={props.pokemon.sprites.front_default ?? fallback} alt={props.pokemon.name}/>
       <div className="text-xl text-center capitalize mt-[-2rem]">
         {props.pokemon.name}
       </div>
