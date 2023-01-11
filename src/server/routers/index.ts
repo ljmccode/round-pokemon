@@ -12,9 +12,11 @@ export const appRouter = router({
       })
     )
     .query(async ({ input }) => {
-      const api = new PokemonClient();
-      const pokemon = await api.getPokemonById(input.id);
-      return { name: pokemon.name, sprites: pokemon.sprites };
+      const pokemon = await prisma.pokemon.findFirst({
+        where: { id: input.id },
+      });
+      if (!pokemon) throw new Error('Pokemon does not exist');
+      return pokemon;
     }),
   castVote: procedure
     .input(
@@ -26,7 +28,8 @@ export const appRouter = router({
     .mutation(async ({ input }) => {
       const voteInDb = await prisma.vote.create({
         data: {
-          ...input,
+          votedAgainstId: input.votedAgainst,
+          votedForId: input.votedFor,
         },
       });
       return { success: true, vote: voteInDb };
