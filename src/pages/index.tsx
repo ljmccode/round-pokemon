@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { trpc } from '@/utils/trpc'
 import { getOptionsForVote } from '@/utils/getRandomPokemon'
-import PokemonListing from './components/PokemonListing'
+import PokemonListing from '../components/PokemonListing'
 
 
 export default function Home() {
