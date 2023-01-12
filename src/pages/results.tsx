@@ -1,5 +1,6 @@
 import { GetServerSideProps, GetStaticProps } from 'next';
 import Head from 'next/head';
+import Link from 'next/link';
 import { prisma } from '@/server/utils/prisma';
 import { AsyncReturnType } from '@/utils/ts-bs';
 import Image from 'next/image';
@@ -65,7 +66,8 @@ const ResultsPage: React.FC<{pokemon: PokemonQueryResult}> = (props) => {
         <title>Roundest Pokemon Results</title>
       </Head>
       <h2 className='text-2xl p-4'>Results</h2>
-      <div className='flex flex-col w-full max-w-2xl border'>
+      <Link className="p-4" href={'/'}>Back to Home</Link>
+      <div className='flex flex-col w-full max-w-xl border'>
         {props.pokemon.sort((a,b) => {
           const difference = generateCountPercent(b) - generateCountPercent(a);
           if (difference === 0) return b._count.VoteFor - a._count.VoteFor
