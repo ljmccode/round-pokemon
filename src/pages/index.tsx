@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <div className="h-screen w-screen flex flex-col justify-between items-center relative">
       <div className='text-2xl text-center pt-8'>Which Pokemon is rounder?</div>
-      <div className='p-2'></div>
+      
         {dataLoaded && (
           <div className='border rounded p-8 flex justify-between items-center max-w-2xl'>
           <PokemonListing pokemon={firstPokemon.data} vote={() => voteForRoundest(first)} />
@@ -43,7 +43,7 @@ export default function Home() {
           
         )}
       {!dataLoaded && (<img className="w-48" src="/rings.svg" alt="loader"/>)}
-      <div className="w-full text-xl text-center pt-4">
+      <div className="w-full text-xl text-center pb-4">
         <Link href="/results">
           Results
         </Link>
